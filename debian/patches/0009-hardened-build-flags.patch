@@ -1,0 +1,19 @@
+Multipath Hardening Patch
+--- a/Makefile.inc
++++ b/Makefile.inc
+@@ -98,12 +98,12 @@
+ 		  -Wp,-D_FORTIFY_SOURCE=2 $(STACKPROT) \
+ 		  --param=ssp-buffer-size=4
+ 
+-CFLAGS		:= $(OPTFLAGS) -DBIN_DIR=\"$(bindir)\" -DLIB_STRING=\"${LIB}\" -DRUN_DIR=\"${RUN}\" \
+-		   -MMD -MP $(CFLAGS)
++CFLAGS		:= $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS) $(OPTFLAGS) -DBIN_DIR=\"$(bindir)\" \
++		    -DLIB_STRING=\"${LIB}\" -DRUN_DIR=\"${RUN}\" -MMD -MP $(CFLAGS)
+ BIN_CFLAGS	= -fPIE -DPIE
+ LIB_CFLAGS	= -fPIC
+ SHARED_FLAGS	= -shared
+-LDFLAGS		= -Wl,-z,relro -Wl,-z,now
++LDFLAGS		= $(shell dpkg-buildflags --get LDFLAGS)
+ BIN_LDFLAGS	= -pie
+ 
+ # Check whether a function with name $1 has been declared in header file $2.

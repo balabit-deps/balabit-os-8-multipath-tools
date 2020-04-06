@@ -1,0 +1,17 @@
+From: Mauricio Faria de Oliveira <mauricfo@linux.vnet.ibm.com>
+Subject: Make the use of -fexceptions conditional.
+Last-Update: 2019-04-29
+
+--- a/Makefile.inc
++++ b/Makefile.inc
+@@ -106,6 +106,10 @@ SHARED_FLAGS	= -shared
+ LDFLAGS		= $(shell dpkg-buildflags --get LDFLAGS)
+ BIN_LDFLAGS	= -pie
+ 
++ifdef CFLAGS_DISABLE_FEXCEPTIONS
++	CFLAGS := $(filter-out -fexceptions,$(CFLAGS))
++endif
++
+ # Check whether a function with name $1 has been declared in header file $2.
+ check_func = $(shell \
+ 	if grep -Eq "^[^[:blank:]]+[[:blank:]]+$1[[:blank:]]*(.*)*" "$2"; then \

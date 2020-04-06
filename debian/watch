@@ -1,0 +1,4 @@
+# format version number, currently 3; this line is compulsory!
+version=3
+https://git.opensvc.com/gitweb.cgi?p=multipath-tools/.git;a=tags .*a=log;h=refs/tags/(\d[\d\.]*[^\s]*)
+

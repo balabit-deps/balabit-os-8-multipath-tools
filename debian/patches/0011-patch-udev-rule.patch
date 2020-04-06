@@ -1,0 +1,14 @@
+Patch for udev rule. This patch will continue being carried
+--- a/kpartx/kpartx.rules
++++ b/kpartx/kpartx.rules
+@@ -8,6 +8,10 @@
+ ACTION!="add|change", GOTO="kpartx_end"
+ ENV{DM_UUID}!="?*", GOTO="kpartx_end"
+ 
++# This is a temporary hack until Debian's dmsetup properly supports "dmsetup
++# export". For more information see: #434241, #487881, #493078
++IMPORT{program}="dmsetup_env %M %m"
++
+ # Create dm tables for partitions on multipath devices.
+ ENV{DM_UUID}!="mpath-?*", GOTO="mpath_kpartx_end"
+ 

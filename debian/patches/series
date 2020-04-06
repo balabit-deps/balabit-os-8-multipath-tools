@@ -1,0 +1,14 @@
+0001-blacklist-cciss-devices.patch
+0009-hardened-build-flags.patch
+0011-patch-udev-rule.patch
+systemd-alias.patch
+disable-systemd-for-udeb.patch
+fix-usrmerge-paths.patch
+11-dm-mpath-fix-DM_UDEV_RULES_VSN-check.patch
+enable-cross-build.patch
+disable-fexceptions-udeb.patch
+kpartx_more_loopback_fixes.patch
+enable-find-multipaths.patch
+kpartx-Improve-finding-loopback-device-by-file.patch
+kpartx-print-loop-deleted-to-stdout-not-stderr.patch
+no-start-in-containers.patch

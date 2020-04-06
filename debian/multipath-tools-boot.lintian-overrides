@@ -1,0 +1,15 @@
+# m-t-b package was introduced for early loading of kernel module and initramfs
+# support. The initscripts job was only to load the kernel module
+# This does not apply for systemd because the main service already loads it
+# Infact, we mask the sysv generator service to not let the initscript run under
+# systemd. So the below 3 overrides
+
+multipath-tools-boot: systemd-no-service-for-init-script multipath-tools-boot
+multipath-tools-boot: systemd-no-service-for-init-rcS-script multipath-tools-boot
+multipath-tools-boot: duplicate-conffile etc/init.d/multipath-tools-boot
+
+
+# Like the explanation above, the job of m-t-b initscript is very limited to loading
+# the kernel module only. There is not much to probe the status of.
+
+multipath-tools-boot: init.d-script-does-not-implement-optional-option etc/init.d/multipath-tools-boot status

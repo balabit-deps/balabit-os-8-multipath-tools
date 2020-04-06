@@ -1,0 +1,37 @@
+Source: multipath-tools
+Version: 0.7.9-1
+Tags: patch upstream
+User: helmutg@debian.org
+Usertags: rebootstrap
+Bug#916521: multipath-tools FTCBFS: uses the wrong pkg-config
+
+multipath-tools fails to cross build from source, because
+multipath-tools' Makefiles hard code the build architecture pkg-config.
+After making it substitutable, it picks up the one supplied by
+dh_auto_build and cross builds successfully. Please consider applying
+the attached patch.
+
+--- a/Makefile.inc
++++ b/Makefile.inc
+@@ -78,6 +78,7 @@
+ RM		= rm -f
+ LN		= ln -sf
+ INSTALL_PROGRAM	= install
++PKG_CONFIG	?= pkg-config
+ 
+ # $(call TEST_CC_OPTION,option,fallback)
+ # Test if the C compiler supports the option.
+--- a/libdmmp/Makefile
++++ b/libdmmp/Makefile
+@@ -16,9 +16,9 @@
+ OBJS = libdmmp.o libdmmp_mp.o libdmmp_pg.o libdmmp_path.o libdmmp_misc.o
+ 
+ CFLAGS += $(LIB_CFLAGS) -fvisibility=hidden -I$(libdmmpdir) -I$(mpathcmddir) \
+-	  $(shell pkg-config --cflags json-c)
++	  $(shell $(PKG_CONFIG) --cflags json-c)
+ 
+-LIBDEPS += $(shell pkg-config --libs json-c) -L$(mpathcmddir) -lmpathcmd -lpthread
++LIBDEPS += $(shell $(PKG_CONFIG) --libs json-c) -L$(mpathcmddir) -lmpathcmd -lpthread
+ 
+ all: $(LIBS) doc
+ 

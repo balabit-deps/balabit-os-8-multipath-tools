@@ -1,0 +1,17 @@
+Description: Do not attempt to start multipath-tools in containers,
+ should switch for on-demand udev/socket based activation in the
+ future.
+Author: Dimitri John Ledkov <xnox@ubuntu.com>
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1823093
+
+
+--- multipath-tools-0.7.4.orig/multipathd/multipathd.service
++++ multipath-tools-0.7.4/multipathd/multipathd.service
+@@ -8,6 +8,7 @@ DefaultDependencies=no
+ Conflicts=shutdown.target
+ ConditionKernelCommandLine=!nompath
+ ConditionKernelCommandLine=!multipath=off
++ConditionVirtualization=!container
+ 
+ [Service]
+ Type=notify

@@ -1,0 +1,21 @@
+D-I does not support systemd. So our udebs need to be systemd free
+--- a/Makefile.inc
++++ b/Makefile.inc
+@@ -35,7 +35,8 @@
+ 	endif
+ endif
+ 
+-ifndef SYSTEMD
++ifeq ($(USE_SYSTEMD), 1)
++    ifndef SYSTEMD
+ 	ifeq ($(shell pkg-config --modversion libsystemd >/dev/null 2>&1 && echo 1), 1)
+ 		SYSTEMD = $(shell pkg-config --modversion libsystemd)
+ 	else
+@@ -44,6 +45,7 @@
+ 				sed -n 's/systemd \([0-9]*\).*/\1/p')
+ 		endif
+ 	endif
++    endif
+ endif
+ 
+ ifndef SYSTEMDPATH

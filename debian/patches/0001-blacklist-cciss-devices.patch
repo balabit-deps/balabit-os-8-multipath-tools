@@ -1,0 +1,26 @@
+From: =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+Date: Fri, 3 Oct 2008 12:39:48 +0200
+Subject: [PATCH] blacklist cciss devices
+
+cciss support isn't complete in 0.4.8 and the half functioning causes
+problems in d-i among other things.
+Closes: #500991
+---
+ libmultipath/blacklist.c |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
+
+--- a/libmultipath/blacklist.c
++++ b/libmultipath/blacklist.c
+@@ -210,6 +210,12 @@
+ 	if (store_ble(conf->elist_property, str, ORIGIN_DEFAULT))
+ 		return 1;
+ 
++	str = STRDUP("^cciss!c[0-9]d[0-9]*");
++	if (!str)
++		return 1;
++	if (store_ble(conf->blist_devnode, str, ORIGIN_DEFAULT))
++		return 1;
++
+ 	vector_foreach_slot (conf->hwtable, hwe, i) {
+ 		if (hwe->bl_product) {
+ 			if (find_blacklist_device(conf->blist_device,

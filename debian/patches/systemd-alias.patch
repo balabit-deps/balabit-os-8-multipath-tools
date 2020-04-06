@@ -1,0 +1,8 @@
+Add Alias of mulitpath-tools because that is what we named our init service
+--- a/multipathd/multipathd.service
++++ b/multipathd/multipathd.service
+@@ -21,3 +21,4 @@
+ [Install]
+ WantedBy=sysinit.target
+ Also=multipathd.socket
++Alias=multipath-tools.service

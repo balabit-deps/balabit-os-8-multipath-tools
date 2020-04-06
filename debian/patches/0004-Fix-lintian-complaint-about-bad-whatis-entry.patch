@@ -1,0 +1,40 @@
+From 7c6ea59bb0860cce3d2e4af38fc86edee71df251 Mon Sep 17 00:00:00 2001
+From: Vincent McIntyre <vincent.mcintyre@csiro.au>
+Date: Fri, 9 Jun 2017 16:47:45 +1000
+Subject: [PATCH 4/4] Fix lintian complaint about bad whatis entry
+
+Signed-off-by: Vincent McIntyre <vincent.mcintyre@csiro.au>
+---
+ libmpathpersist/mpath_persistent_reserve_in.3  | 2 +-
+ libmpathpersist/mpath_persistent_reserve_out.3 | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/libmpathpersist/mpath_persistent_reserve_in.3 b/libmpathpersist/mpath_persistent_reserve_in.3
+index 5ed0779..4691bde 100644
+--- a/libmpathpersist/mpath_persistent_reserve_in.3
++++ b/libmpathpersist/mpath_persistent_reserve_in.3
+@@ -12,7 +12,7 @@
+ .SH NAME
+ .\" ----------------------------------------------------------------------------
+ .
+-mpath_persistent_reserve_in
++mpath_persistent_reserve_in \- send PRIN command to DM device
+ .
+ .
+ .\" ----------------------------------------------------------------------------
+diff --git a/libmpathpersist/mpath_persistent_reserve_out.3 b/libmpathpersist/mpath_persistent_reserve_out.3
+index e11eb57..55b00b0 100644
+--- a/libmpathpersist/mpath_persistent_reserve_out.3
++++ b/libmpathpersist/mpath_persistent_reserve_out.3
+@@ -12,7 +12,7 @@
+ .SH NAME
+ .\" ----------------------------------------------------------------------------
+ .
+-mpath_persistent_reserve_out
++mpath_persistent_reserve_out \- send PROUT command to DM device
+ .
+ .
+ .\" ----------------------------------------------------------------------------
+-- 
+2.1.4
+

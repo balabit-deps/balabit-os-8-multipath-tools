@@ -1,0 +1,33 @@
+From dc2cd8f1c7d910d98e2046fd096a5eb67a8e9b9a Mon Sep 17 00:00:00 2001
+From: Julian Andres Klode <julian.klode@canonical.com>
+Date: Mon, 5 Feb 2018 11:34:14 +0100
+Subject: [PATCH] kpartx: print "loop deleted" to stdout, not stderr
+
+Commit fa643f5d2590028a59c671b81ab41383806fd258 moved some
+code around and changed the print for loop deleted from stdout
+to stderr - but this is not an error message, and also printed
+to stdout in another place, so let's just use printf() again
+here.
+
+Signed-off-by: Julian Andres Klode <julian.klode@canonical.com>
+Forwarded: https://www.redhat.com/archives/dm-devel/2018-February/msg00021.html
+---
+ kpartx/kpartx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/kpartx/kpartx.c b/kpartx/kpartx.c
+index c1af1c5e..2e882721 100644
+--- a/kpartx/kpartx.c
++++ b/kpartx/kpartx.c
+@@ -399,7 +399,7 @@ main(int argc, char **argv){
+ 					       loopdev);
+ 				r = 1;
+ 			} else
+-				fprintf(stderr, "loop deleted : %s\n", loopdev);
++				printf("loop deleted : %s\n", loopdev);
+ 		}
+ 		goto end;
+ 	}
+-- 
+2.15.1
+

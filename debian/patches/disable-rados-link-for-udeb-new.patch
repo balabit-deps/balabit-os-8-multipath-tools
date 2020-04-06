@@ -1,0 +1,50 @@
+Debianize patch for RADOS conditional enablement. Maybe should be upstreamed
+--- a/libmultipath/checkers/Makefile
++++ b/libmultipath/checkers/Makefile
+@@ -6,23 +6,35 @@
+ CFLAGS += $(LIB_CFLAGS) -I..
+ 
+ # If you add or remove a checker also update multipath/multipath.conf.5
+-LIBS= \
+-	libcheckcciss_tur.so \
+-	libcheckreadsector0.so \
+-	libchecktur.so \
+-	libcheckdirectio.so \
+-	libcheckemc_clariion.so \
+-	libcheckhp_sw.so \
+-	libcheckrdac.so
+-
+-ifneq ($(call check_file,/usr/include/rados/librados.h),0)
+-LIBS += libcheckrbd.so
++ifeq ($(USE_RADOS), 1)
++	# If you add or remove a checker also update multipath/multipath.conf.5
++	LIBS= \
++		libcheckcciss_tur.so \
++		libcheckreadsector0.so \
++		libchecktur.so \
++		libcheckdirectio.so \
++		libcheckemc_clariion.so \
++		libcheckhp_sw.so \
++		libcheckrdac.so \
++		libcheckrbd.so
++else
++	# If you add or remove a checker also update multipath/multipath.conf.5
++	LIBS= \
++		libcheckcciss_tur.so \
++		libcheckreadsector0.so \
++		libchecktur.so \
++		libcheckdirectio.so \
++		libcheckemc_clariion.so \
++		libcheckhp_sw.so \
++		libcheckrdac.so
+ endif
+ 
+ all: $(LIBS)
+ 
++ifeq ($(USE_RADOS), 1)
+ libcheckrbd.so: rbd.o
+ 	$(CC) $(LDFLAGS) $(SHARED_FLAGS) -o $@ $^ -lrados -ludev
++endif
+ 
+ libcheckdirectio.so: libsg.o directio.o
+ 	$(CC) $(LDFLAGS) $(SHARED_FLAGS) -o $@ $^ -laio
