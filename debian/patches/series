@@ -12,3 +12,5 @@ enable-find-multipaths.patch
 kpartx-Improve-finding-loopback-device-by-file.patch
 kpartx-print-loop-deleted-to-stdout-not-stderr.patch
 no-start-in-containers.patch
+CVE-2022-41973.patch
+CVE-2022-41974.patch

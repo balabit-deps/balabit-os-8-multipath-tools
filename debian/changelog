@@ -1,3 +1,21 @@
+multipath-tools (0.8.3-1ubuntu2.1) focal-security; urgency=medium
+
+  * SECURITY UPDATE: symlink attack
+    - debian/patches/CVE-2022-41973.patch: use /run instead of /dev/shm in
+      .gitignore, Makefile.inc, libmultipath/defaults.h,
+      multipath/Makefile, multipath/multipath.rules.in,
+      multipath/tmpfiles.conf.in.
+    - debian/multipath-tools.install, debian/multipath-udeb.install:
+      install tmpfiles.d/multipath.conf.
+    - debian/rules: copy udev rule after build.
+    - CVE-2022-41973
+  * SECURITY UPDATE: authorization bypass
+    - debian/patches/CVE-2022-41974.patch: ignore duplicated multipathd
+      command keys in multipathd/main.c, multipathd/cli.c.
+    - CVE-2022-41974
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 31 Oct 2022 11:14:23 -0400
+
 multipath-tools (0.8.3-1ubuntu2) focal; urgency=medium
 
   * Enable udebs on riscv64 to fix FTBFS.

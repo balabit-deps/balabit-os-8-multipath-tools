@@ -3,3 +3,4 @@
 /lib/libmultipath.so.*
 /lib/libmpathcmd.so*
 /etc/multipath.conf
+/usr/lib/tmpfiles.d/multipath.conf
