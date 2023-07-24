@@ -1,3 +1,11 @@
+multipath-tools (0.8.3-1ubuntu2.2) focal; urgency=medium
+
+  * Do not install init scripts (LP: #2000186)
+    - d/multipath-tools.maintscript: remove /etc/init.d/multipath-tools
+    - d/rules: do not call dh_installinit
+
+ -- Mitchell Dzurick <mitchell.dzurick@canonical.com>  Mon, 24 Jul 2023 16:06:36 -0700
+
 multipath-tools (0.8.3-1ubuntu2.1) focal-security; urgency=medium
 
   * SECURITY UPDATE: symlink attack
