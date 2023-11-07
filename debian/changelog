@@ -1,3 +1,22 @@
+multipath-tools (0.8.3-1ubuntu2.3) focal; urgency=medium
+
+  [ Jorge Merlino ]
+  * Multipath devices not removed with high load (LP: #2039719)
+    - d/p/lp2039719-1-libmultipath-make-dm_get_map-status-return-codes-sym.patch:
+      change the return value of some functions from a boolean to symbolic codes 
+      to differentiate errors
+    - d/p/lp2039719-2-multipathd-fix-check_path-errors-with-removed-map.patch:
+      use the new error codes to change the error processing on the 
+      check_path() procedure
+
+  [ Mauricio Faria de Oliveira ]
+  * Add upstream fixes:
+    - d/p/lp2039719-3-multipathd-fix-NULL-dereference-in-check_path.patch
+    - d/p/lp2042366-dm_get_map-fix-segfault-when-can-t-found-target.patch
+      (LP: #2042366)
+
+ -- Jorge Merlino <jorge.merlino@canonical.com>  Tue, 07 Nov 2023 18:20:27 -0300
+
 multipath-tools (0.8.3-1ubuntu2.2) focal; urgency=medium
 
   * Do not install init scripts (LP: #2000186)

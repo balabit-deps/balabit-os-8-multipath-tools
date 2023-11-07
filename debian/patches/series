@@ -14,3 +14,7 @@ kpartx-print-loop-deleted-to-stdout-not-stderr.patch
 no-start-in-containers.patch
 CVE-2022-41973.patch
 CVE-2022-41974.patch
+lp2039719-1-libmultipath-make-dm_get_map-status-return-codes-sym.patch
+lp2039719-2-multipathd-fix-check_path-errors-with-removed-map.patch
+lp2039719-3-multipathd-fix-NULL-dereference-in-check_path.patch
+lp2042366-dm_get_map-fix-segfault-when-can-t-found-target.patch
