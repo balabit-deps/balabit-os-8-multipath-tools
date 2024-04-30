@@ -1,3 +1,10 @@
+multipath-tools (0.8.3-1ubuntu2.4) focal; urgency=medium
+
+  * Use Debian-specific partx path in kpartx rule (LP: #2064201)
+    - d/p/lp2064201-kpartx-rules-use-Debian-specific-partx-path.patch
+
+ -- Chengen Du <chengen.du@canonical.com>  Tue, 30 Apr 2024 07:49:10 +0000
+
 multipath-tools (0.8.3-1ubuntu2.3) focal; urgency=medium
 
   [ Jorge Merlino ]

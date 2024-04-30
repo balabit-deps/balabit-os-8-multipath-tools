@@ -18,3 +18,4 @@ lp2039719-1-libmultipath-make-dm_get_map-status-return-codes-sym.patch
 lp2039719-2-multipathd-fix-check_path-errors-with-removed-map.patch
 lp2039719-3-multipathd-fix-NULL-dereference-in-check_path.patch
 lp2042366-dm_get_map-fix-segfault-when-can-t-found-target.patch
+lp2064201-kpartx-rules-use-Debian-specific-partx-path.patch

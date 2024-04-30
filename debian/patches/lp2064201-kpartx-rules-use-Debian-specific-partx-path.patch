@@ -1,0 +1,19 @@
+From: Chris Hofstaedtler <zeha@debian.org>
+Date: Sun Jun 21 16:03:33 2020 +0000
+Subject: kpartx: use correct path to partx in udev rule
+
+Closes: #959727
+
+Bug-Ubuntu: https://launchpad.net/bugs/2064201
+Origin: upstream, https://salsa.debian.org/linux-blocks-team/multipath-tools/-/commit/f4b2af2b3f098d709944e60a1745d716258cd921
+
+--- multipath-tools-0.8.3.orig/kpartx/del-part-nodes.rules
++++ multipath-tools-0.8.3/kpartx/del-part-nodes.rules
+@@ -28,6 +28,6 @@ GOTO="end_del_part_nodes"
+ LABEL="del_part_nodes"
+ IMPORT{db}="DM_DEL_PART_NODES"
+ ENV{DM_DEL_PART_NODES}!="1", ENV{DM_DEL_PART_NODES}="1", \
+-	RUN+="/usr/sbin/partx -d --nr 1-1024 $env{DEVNAME}"
++	RUN+="/usr/bin/partx -d --nr 1-1024 $env{DEVNAME}"
+ 
+ LABEL="end_del_part_nodes"
